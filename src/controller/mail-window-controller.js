@@ -101,7 +101,7 @@ class MailWindowController {
                             }
                             if (unread.length)
                             {
-                                var notification = new Notification("Outlook - receiving " + unread.length + " new messages.", {
+                                var notification = new Notification("Microsoft Outlook - receiving " + unread.length + " NEW mails", {
                                     body: body,
                                     icon: "assets/outlook_linux_black.png"
                                 });
@@ -152,11 +152,15 @@ class MailWindowController {
         if (new RegExp(deeplinkUrls.join('|')).test(url)) {
             // Default action - if the user wants to open mail in a new window - let them.
         }
-        else if (new RegExp(outlookUrls.join('|')).test(url)) {
-            // Open calendar, contacts and tasks in the same window
-            e.preventDefault();
-            this.loadURL(url)
-        }
+
+        // Disable the logic to load calendar contact and tasks in the election window.
+        // Calendar has no link to back to mail. Once switch the window to calendar no way to back to mail unless close the app.
+
+        // else if (new RegExp(outlookUrls.join('|')).test(url)) {
+        //     // Open calendar, contacts and tasks in the same window
+        //     e.preventDefault();
+        //     this.loadURL(url)
+        // }
         else {
             // Send everything else to the browser
             e.preventDefault();
